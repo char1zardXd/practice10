@@ -11,7 +11,7 @@ public class main {
 
     static void main(String[] args) {
         while (true) {
-            System.out.println("===Главне меню===");
+            System.out.println("===Головне меню===");
             System.out.println("1. Додати користувача.");
             System.out.println("2. Видалити користувача.");
             System.out.println("3. Переглянути існуючих користувачів.");
@@ -20,6 +20,7 @@ public class main {
 
             try {
                 choice = sc.nextInt();
+                sc.nextLine();
             } catch (InputMismatchException e){
                 System.out.println("Введіть число");
                 sc.nextLine();
@@ -112,10 +113,26 @@ public class main {
     }
 
     public static void deleteUserData() {
+        if (userCount == 0) {
+            System.out.println("Помилка: Немає кого видаляти!");
+            return;
+        }
+
         printUsers();
-        System.out.println("Введіть номер користувача для видалення");
-        int index = sc.nextInt();
-        sc.nextLine();
+
+        int index;
+        while (true) {
+            try {
+                System.out.println("Введіть номер користувача для видалення");
+                index = sc.nextInt();
+                sc.nextLine();
+                break;
+            }catch (InputMismatchException e) {
+                System.out.println("Введіть число");
+                sc.nextLine();
+            }
+
+        }
 
         int realIndex = index - 1;
 
